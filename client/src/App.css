@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Play&family=Quintessential&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Play&family=Quintessential&display=swap");
+
+:root {
+  --dark-3: rgb(21, 21, 21);
+  --dark-4: rgb(41, 41, 41);
+  --text-dark1: rgb(106, 105, 105);
+  --text-dark2: rgb(181, 179, 179);
+  --org2: rgb(255, 193, 78);
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  background: linear-gradient(90deg, var(--dark-3), var(--dark-4));
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Navbar */
+.logoText {
+  display: none;
+  font-family: "Cinzel", serif;
+  margin-right: 10px;
+  margin-left: 15px;
+  color: orange;
+  font-weight: bold;
+}
+.show-logo {
+  display: block;
+  margin-left: 30px;
+}
+
+.navlinks {
+  display: flex;
+  margin-left: auto;
+  margin-right: 18px;
+  /* background: linear-gradient(60deg, rgb(182, 120, 5), orange, var(--org2)); */
+}
+.navmenu {
+  color: var(--text-dark2);
+  list-style: none;
+  margin-left: 6vw;
+  font-family: "Play", sans-serif;
+}
+.navmenu:hover {
+  color: orange;
+  cursor: pointer;
+}
+.selected {
+  color: orange;
+  text-shadow: 0 0 5px orange;
+}
