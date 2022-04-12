@@ -21,13 +21,13 @@ export const getAllRecords = async (req, res) => {
 // };
 
 export const createRecord = async (req, res) => {
-  const { activity, date, duration, note, goal } = req.body;
+  const { imgFile, activity, date, duration, goal, note } = req.body;
   const newRecord = new RecordInfo({
     activity,
     date,
     duration,
-    note,
     goal,
+    note,
   });
 
   try {
