@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Play&family=Quintessential&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Play&family=Quintessential&display=swap");
+
+.quote-sect {
+  background: linear-gradient(45deg, rgb(5, 5, 5), rgb(44, 44, 44));
+  height: 30px;
+  width: fit-content;
+  color: var(--text-dark2);
+  position: relative;
+  z-index: 10;
+  margin-top: 0;
+}
+.quote-sect::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(90deg, rgb(14, 14, 14), rgb(44, 44, 44));
+  bottom: -6px;
+  transform: skewY(2deg);
+  z-index: -1;
+}
+.quote-sect h4 {
+  font-family: "Cinzel", serif;
+}
+.quote-sect h4 span {
+  font-size: 25px;
+  color: orange;
+}
+
+/* Activities list */
+.cateTitle {
+  color: var(--text-dark2);
+}
+.orange {
+  color: orange;
+}
+.actList_container {
+  font-family: "Play", sans-serif;
+  margin-bottom: 20px;
+}
+.actImg {
+  width: 120px;
+  height: 100px;
+  border-radius: 10%;
+  transition: 0.3s;
+}
+/* On Hover */
+.actImg:hover {
+  transform: scale(1.1);
+  border-radius: 0;
+}
+.actName {
+  font-size: 18px;
+}
+.actCal {
+  font-size: 14px;
+  color: var(--text-dark2);
+}
+hr {
+  border: 1px solid rgb(48, 48, 48);
+  width: 100%;
+  margin-top: 20px;
+}

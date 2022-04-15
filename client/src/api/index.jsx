@@ -1,9 +1,14 @@
 import axios from "axios";
 
-const url = "http://localhost:4000/records";
+const urlRec = "http://localhost:4000/records";
 
-export const getAllRecords = () => axios.get(url);
-export const createRecord = (newRecod) => axios.post(url, newRecod);
-export const getRecord = (id) => axios.get(`${url}/${id}`);
-export const updateRecord = (id) => axios.put(`${url}/${id}`);
-export const deleteRecord = (id) => axios.delete(`${url}/${id}`);
+export const getAllRecords = () => axios.get(urlRec);
+export const createRecord = (newRecord) => axios.post(urlRec, newRecord);
+export const getRecord = (id) => axios.get(`${urlRec}/${id}`);
+export const updateRecord = (id) => axios.put(`${urlRec}/${id}`);
+export const deleteRecord = (id) => axios.delete(`${urlRec}/${id}`);
+
+const urlAct = "http://localhost:4000/activities";
+
+export const getAllActivities = () => axios.get(urlAct);
+export const createActivity = (newAct) => axios.post(urlAct, newAct);

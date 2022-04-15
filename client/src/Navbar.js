@@ -11,12 +11,13 @@ import "./App.css";
 import AlignVerticalCenterIcon from "@mui/icons-material/AlignVerticalCenter";
 import { logoS, navbarS } from "./NavbarStyle";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [navmenus, setNavmenus] = useState(["Home", "Activities", "Profile"]);
   const [navbar, setNavbar] = useState(navbarS);
   const [logo, setLogo] = useState(logoS);
-  const [indexSelected, setIndexSelected] = useState(1);
+  const [indexSelected, setIndexSelected] = useState(0);
   const [isPressed, setIsPressed] = useState(false);
 
   const theme = useTheme();
@@ -55,15 +56,16 @@ function Navbar() {
             <ul className="navlinks">
               {navmenus.map((item, index) => {
                 return (
-                  <li
+                  <Link
+                    to={`${item.toLowerCase()}`}
                     key={index}
                     className={`navmenu ${
                       index === indexSelected && "selected"
                     }`}
                     onClick={() => setIndexSelected(index)}
                   >
-                    {item}
-                  </li>
+                    <li>{item}</li>
+                  </Link>
                 );
               })}
             </ul>

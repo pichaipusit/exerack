@@ -1,0 +1,19 @@
+.form-create {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+}
+.form-group {
+  margin-bottom: 16px;
+  text-align: center;
+}
+input {
+  width: 80%;
+  padding: 8px;
+  margin: 8px;
+}
+
+.note {
+  padding-bottom: 20px;
+}
