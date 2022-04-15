@@ -1,19 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Play&family=Quintessential&display=swap");
+
 .form-create {
-  width: 480px;
+  width: 400px;
   display: flex;
   flex-direction: column;
-  background-color: red;
+  background: linear-gradient(45deg, rgb(39, 38, 38), rgb(61, 60, 60));
+  border-radius: 6%;
+  outline: none;
+
+  left: 50%;
+  right: 50%;
+  z-index: 100;
+  font-family: "Play", sans-serif;
 }
+
+.action-header {
+  color: rgb(176, 173, 173);
+  background: rgb(13, 13, 13);
+  /* padding: 0; */
+  height: 56px;
+  padding-left: 30px;
+  margin-bottom: 20px;
+  border-top: 1px solid grey;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cross {
+  color: orange;
+}
+
 .form-group {
   margin-bottom: 16px;
   text-align: center;
 }
+
 input {
-  width: 80%;
-  padding: 8px;
+  width: 70%;
+  padding: 6px;
   margin: 8px;
+  outline: none;
+  background: rgb(159, 158, 158);
+  border-radius: 5px;
 }
 
 .note {
   padding-bottom: 20px;
+}
+
+/* Button-container */
+.btn-container {
+  margin: 20px;
+  margin-left: auto;
+}
+.btn-goon,
+.btn-cancel {
+  cursor: pointer;
+}
+.btn-goon {
+  background: linear-gradient(90deg, orange, rgb(248, 211, 61));
+  width: fit-content;
+  outline: none;
+  border-top: 1px solid grey;
+  border-radius: 25px;
+  padding: 6px 10px;
+  margin-left: 10px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.btn-goon:hover {
+  background: linear-gradient(90deg, rgb(248, 211, 61), orange);
+  box-shadow: 5px 5px 5px black;
+}
+.btn-cancel {
+  background: transparent;
+  color: orange;
+  border: 1.4px solid orange;
+  width: fit-content;
+  outline: none;
+  border-radius: 25px;
+  padding: 6px 10px;
+  transition: 0.3s;
+}
+.btn-cancel:hover {
+  box-shadow: 5px 5px 5px black;
 }

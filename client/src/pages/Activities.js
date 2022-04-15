@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import ActivityCategory from "../components/ActivityCategory";
 import "./Activities.css";
 import activityData from "./dataForTest";
@@ -9,6 +9,8 @@ function Activities() {
   const [popularList, setPopularList] = useState([]);
   const [indoorList, setIndoorList] = useState([]);
   const [outdoorList, setOutdoorList] = useState([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // Just for testing
 
   useEffect(() => {
@@ -31,17 +33,26 @@ function Activities() {
             cateTitle="Most Popular"
             cateList={indoorList}
             titleColor="orange"
+            setIsModalOpen={setIsModalOpen}
           />
         </section>
 
         <section className="indoor-sect">
-          <ActivityCategory cateTitle="Indoor" cateList={indoorList} />
+          <ActivityCategory
+            cateTitle="Indoor"
+            cateList={indoorList}
+            setIsModalOpen={setIsModalOpen}
+          />
         </section>
         <section className="indoor-sect">
-          <ActivityCategory cateTitle="Outdoor" cateList={indoorList} />
+          <ActivityCategory
+            cateTitle="Outdoor"
+            cateList={indoorList}
+            setIsModalOpen={setIsModalOpen}
+          />
         </section>
 
-        <FormCreate />
+        <FormCreate isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </Container>
     </div>
   );

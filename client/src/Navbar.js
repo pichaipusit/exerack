@@ -45,6 +45,7 @@ function Navbar() {
                   onClick={handleClick}
                   sx={{
                     color: "orange",
+                    cursor: "pointer",
                     marginLeft: "20px",
                     fontSize: "35px",
                     transform: isPressed ? "scale(0.8)" : "scale(1)",

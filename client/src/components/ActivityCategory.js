@@ -2,7 +2,12 @@ import { Grid } from "@mui/material";
 import React from "react";
 import "../pages/Activities.css";
 
-function ActivityCategory({ cateTitle, cateList, titleColor = "normal" }) {
+function ActivityCategory({
+  cateTitle,
+  cateList,
+  titleColor = "normal",
+  setIsModalOpen,
+}) {
   const handleClick = () => {};
   return (
     <div className="actList_container">
@@ -12,7 +17,12 @@ function ActivityCategory({ cateTitle, cateList, titleColor = "normal" }) {
           return (
             <Grid key={index} item xs={4} sm={3} md={2.4}>
               <div className="actCard" onClick={handleClick}>
-                <img className="actImg" src={cate.img} alt={cate.title} />
+                <img
+                  onClick={() => setIsModalOpen(true)}
+                  className="actImg"
+                  src={cate.img}
+                  alt={cate.title}
+                />
                 <p className="actName">
                   {cate.title} <br />
                   <span className="actCal">≈ {cate.cal} cal </span>
