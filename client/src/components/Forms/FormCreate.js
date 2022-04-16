@@ -1,9 +1,11 @@
-import { Grid, Modal } from "@mui/material";
+import { Box, Grid, Modal } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import FileBase from "react-file-base64";
 import "./formCreate.css";
 import running from "../../images/outdoor/running.jpeg";
 import ClearIcon from "@mui/icons-material/Clear";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function FormCreate({ isModalOpen, setIsModalOpen }) {
   const [recordInput, setRecordInput] = useState({
@@ -12,16 +14,26 @@ function FormCreate({ isModalOpen, setIsModalOpen }) {
     date: new Date(),
     duration: "",
     note: "",
-    goal: 0,
+    goal: null,
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+  const handleDateChange = (e) => {
+    // e.preventDefault();
+    setRecordInput({ ...recordInput, date: e.target.value });
+  };
+
   return (
     <>
       <Modal
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
         open={isModalOpen}
         // onClose={handleClose}
         aria-labelledby="child-modal-title"
@@ -52,23 +64,38 @@ function FormCreate({ isModalOpen, setIsModalOpen }) {
                   }
                 />
 
-                <input
-                  className="date"
-                  type="date"
-                  placeholder=" Na"
-                  value={recordInput.date}
-                  onChange={(e) =>
-                    setRecordInput({ ...recordInput, date: e.target.value })
+                <div>
+                  <label htmlFor="duration" className="label-duration">
+                    Duration:
+                  </label>
+                  <input
+                    className="time"
+                    type="time"
+                    value={recordInput.duration}
+                    onChange={(e) =>
+                      setRecordInput({
+                        ...recordInput,
+                        duration: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+
+                <DatePicker
+                  style={{ color: "white" }}
+                  selected={recordInput.date}
+                  dateFormat="yyyy/MM/dd"
+                  onChange={(date) =>
+                    setRecordInput({ ...recordInput, date: date })
                   }
                 />
-
-                {/* Duration */}
               </div>
+
               <div className="form-group">
                 <input
                   className="goal"
                   type="number"
-                  placeholder="goal"
+                  placeholder="Calories goal"
                   value={recordInput.goal}
                   onChange={(e) =>
                     setRecordInput({ ...recordInput, goal: e.target.value })

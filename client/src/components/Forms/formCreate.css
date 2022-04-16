@@ -12,6 +12,7 @@
   right: 50%;
   z-index: 100;
   font-family: "Play", sans-serif;
+  box-shadow: 5px 5px 20px black;
 }
 
 .action-header {
@@ -21,7 +22,7 @@
   height: 56px;
   padding-left: 30px;
   margin-bottom: 20px;
-  border-top: 1px solid grey;
+  border-top: 1px solid rgb(132, 131, 131);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   font-size: 20px;
@@ -39,6 +40,10 @@
   text-align: center;
 }
 
+.label-duration {
+  margin-right: 120px;
+  color: grey;
+}
 input {
   width: 70%;
   padding: 6px;
@@ -46,6 +51,9 @@ input {
   outline: none;
   background: rgb(159, 158, 158);
   border-radius: 5px;
+}
+::placeholder {
+  color: rgb(77, 76, 76);
 }
 
 .note {

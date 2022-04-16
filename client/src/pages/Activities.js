@@ -23,11 +23,13 @@ function Activities() {
       <Container maxWidth="md">
         <section className="quote-sect" style={{ marginBottom: "70px" }}>
           <h4>
-            " It's not always easy, but it's always <span>worth</span> it. "
-            <br /> Choose Your Activity
+            " It's not always easy, but it's always{" "}
+            <span className="worth">worth</span> it. "
+            <br /> <span className="choose">Choose Your Activity</span>
           </h4>
         </section>
 
+        {/* Will use map */}
         <section className="popular-sect">
           <ActivityCategory
             cateTitle="Most Popular"

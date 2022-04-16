@@ -23,11 +23,13 @@
 .quote-sect h4 {
   font-family: "Cinzel", serif;
 }
-.quote-sect h4 span {
+.quote-sect .worth {
   font-size: 25px;
   color: orange;
 }
-
+.quote-sect .choose {
+  color: orange;
+}
 /* Activities list */
 .cateTitle {
   color: var(--text-dark2);
