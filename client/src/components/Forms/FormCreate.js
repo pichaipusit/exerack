@@ -87,7 +87,16 @@ function FormCreate({ isModalOpen, setIsModalOpen }) {
               </div>
             </Grid>
 
-            <Grid item xs={4} sx={{ color: "darkgrey" }}>
+            <Grid
+              item
+              xs={4}
+              sx={{
+                color: "darkgrey",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <img width="100px" src={running} alt="" />
               <FileBase
                 type="file"

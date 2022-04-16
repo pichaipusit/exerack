@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Play:wght@400;700&family=Quintessential&display=swap");
+
+.username {
+}
+.home-title {
+  font-family: "Cinzel", serif;
+  color: orange;
+}
+.mgLeft {
+  margin-left: 20px;
+}

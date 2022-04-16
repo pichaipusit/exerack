@@ -58,7 +58,7 @@ function Navbar() {
               {navmenus.map((item, index) => {
                 return (
                   <Link
-                    to={`${item.toLowerCase()}`}
+                    to={item === "Home" ? `/` : `${item.toLowerCase()}`}
                     key={index}
                     className={`navmenu ${
                       index === indexSelected && "selected"
