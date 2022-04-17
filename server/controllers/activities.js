@@ -11,12 +11,12 @@ export const getAllActivities = async (req, res) => {
 };
 
 export const createActivity = async (req, res) => {
-  const { imgFile, category, name, calories } = req.body;
+  const { category, imgFile, title, cal } = req.body;
   const newActivity = new ActivityInfo({
-    imgFile,
     category,
-    name,
-    calories,
+    imgFile,
+    title,
+    cal,
   });
 
   try {
