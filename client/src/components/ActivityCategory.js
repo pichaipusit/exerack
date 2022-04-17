@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import "../pages/Activities.css";
+import { useDispatch, useSelector } from "react-redux";
 
 function ActivityCategory({
   cateTitle,
@@ -8,6 +9,7 @@ function ActivityCategory({
   titleColor = "normal",
   setIsModalOpen,
 }) {
+  const dispatch = useDispatch();
   const handleClick = () => {};
   return (
     <div className="actList_container">
@@ -20,7 +22,7 @@ function ActivityCategory({
                 <img
                   onClick={() => setIsModalOpen(true)}
                   className="actImg"
-                  src={cate.img}
+                  src={cate.imgFile}
                   alt={cate.title}
                 />
                 <p className="actName">

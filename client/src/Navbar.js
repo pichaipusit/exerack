@@ -41,16 +41,18 @@ function Navbar() {
 
             <div className="add-container">
               <Tooltip title="Create new activity">
-                <AddCircleOutlineIcon
-                  onClick={handleClick}
-                  sx={{
-                    color: "orange",
-                    cursor: "pointer",
-                    marginLeft: "20px",
-                    fontSize: "35px",
-                    transform: isPressed ? "scale(0.8)" : "scale(1)",
-                  }}
-                />
+                <Link to="/activities" style={{ cursor: "pointer" }}>
+                  <AddCircleOutlineIcon
+                    onClick={handleClick}
+                    sx={{
+                      color: "orange",
+                      cursor: "pointer",
+                      marginLeft: "20px",
+                      fontSize: "35px",
+                      transform: isPressed ? "scale(0.8)" : "scale(1)",
+                    }}
+                  />
+                </Link>
               </Tooltip>
             </div>
 

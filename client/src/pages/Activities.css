@@ -66,4 +66,8 @@ hr {
   margin-top: 20px;
 }
 
-/* Form */
+/* Circular progress */
+.circular {
+  display: flex;
+  justify-content: center;
+}

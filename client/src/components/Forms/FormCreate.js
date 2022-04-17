@@ -14,7 +14,7 @@ function FormCreate({ isModalOpen, setIsModalOpen }) {
     date: new Date(),
     duration: "",
     note: "",
-    goal: null,
+    goal: "",
   });
 
   const handleSubmit = (e) => {

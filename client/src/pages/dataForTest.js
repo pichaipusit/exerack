@@ -13,16 +13,16 @@ import walking from "../images/outdoor/walking.jpeg";
 
 const activityData = [
   // indoor
-  { category: "indoor", img: plank, title: "plank", cal: 500 },
-  { category: "indoor", img: pushUps, title: "push-ups", cal: 500 },
-  { category: "indoor", img: sitUps, title: "sit-ups", cal: 500 },
-  { category: "indoor", img: squats, title: "squats", cal: 500 },
-  { category: "indoor", img: yoga, title: "yoga", cal: 500 },
+  { category: "indoor", img: plank, title: "plank", kcal: 30.86 },
+  { category: "indoor", img: pushUps, title: "push-ups", kcal: 125.66 },
+  { category: "indoor", img: sitUps, title: "sit-ups", kcal: 130.07 },
+  { category: "indoor", img: squats, title: "squats", kcal: 50.7 },
+  { category: "indoor", img: yoga, title: "yoga", kcal: 180 },
   // outdoor
-  { category: "outdoor", img: cycling, title: "cycling", cal: 500 },
-  { category: "outdoor", img: hiking, title: "hiking", cal: 500 },
-  { category: "outdoor", img: running, title: "running", cal: 500 },
-  { category: "outdoor", img: swimming, title: "swimming", cal: 500 },
-  { category: "outdoor", img: walking, title: "walking", cal: 500 },
+  { category: "outdoor", img: cycling, title: "cycling", kcal: 220.46 },
+  { category: "outdoor", img: hiking, title: "hiking", kcal: 368.17 },
+  { category: "outdoor", img: running, title: "running", kcal: 187.39 },
+  { category: "outdoor", img: swimming, title: "swimming", kcal: 308.64 },
+  { category: "outdoor", img: walking, title: "walking", kcal: 100 },
 ];
 export default activityData;
