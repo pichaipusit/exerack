@@ -5,14 +5,17 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import LastRecord from "../components/LastRecord";
 import running from "../images/outdoor/running.jpeg";
 import "./home.css";
+import HistoryList from "../components/HistoryList";
 
 function Home() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
+
+  const [isHistoryView, setIsHistoryView] = useState(false);
 
   return (
     <div>
@@ -35,6 +38,18 @@ function Home() {
           {/* Will use map */}
           <LastRecord matches={matches} />
           <LastRecord matches={matches} />
+        </section>
+
+        <div className="history-btn-container">
+          <button
+            onClick={() => setIsHistoryView(!isHistoryView)}
+            className="history-btn btn"
+          >
+            View history
+          </button>
+        </div>
+        <section className="history-sect">
+          {isHistoryView && <HistoryList matches={matches} />}
         </section>
       </Container>
     </div>

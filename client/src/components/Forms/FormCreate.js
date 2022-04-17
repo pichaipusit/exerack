@@ -143,7 +143,7 @@ function FormCreate({ isModalOpen, setIsModalOpen }) {
             >
               Cancel
             </button>
-            <button type="submit" className="btn-goon">
+            <button type="submit" className="btn-goon btn">
               Create
             </button>
           </div>

@@ -1,0 +1,34 @@
+.history-change-icons {
+  color: grey;
+}
+.history {
+  background: rgb(53, 52, 52);
+  margin-bottom: 20px;
+  border-radius: 12px;
+}
+.history .date {
+  color: rgb(198, 196, 196);
+}
+.burn-cal {
+  color: orange;
+}
+
+/* Button */
+.btn {
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn:hover {
+  box-shadow: 5px 5px 10px black;
+}
+
+.remove-btn {
+  background: black;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.remove-btn:hover {
+  background: rgb(95, 95, 95);
+}

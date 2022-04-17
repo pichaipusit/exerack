@@ -61,6 +61,15 @@ input {
 }
 
 /* Button-container */
+.btn {
+  background: linear-gradient(90deg, orange, rgb(248, 211, 61));
+  width: fit-content;
+  outline: none;
+  border-top: 1px solid grey;
+  border-radius: 25px;
+  padding: 6px 10px;
+  font-weight: bold;
+}
 .btn-container {
   margin: 20px;
   margin-left: auto;
@@ -69,15 +78,9 @@ input {
 .btn-cancel {
   cursor: pointer;
 }
+
 .btn-goon {
-  background: linear-gradient(90deg, orange, rgb(248, 211, 61));
-  width: fit-content;
-  outline: none;
-  border-top: 1px solid grey;
-  border-radius: 25px;
-  padding: 6px 10px;
   margin-left: 10px;
-  font-weight: bold;
   transition: 0.3s;
 }
 .btn-goon:hover {
@@ -96,4 +99,13 @@ input {
 }
 .btn-cancel:hover {
   box-shadow: 5px 5px 5px black;
+}
+/* History */
+.history-btn-container {
+  /* background: red; */
+  text-align: right;
+}
+.history-btn {
+  margin: 24px 0;
+  margin-left: auto;
 }
