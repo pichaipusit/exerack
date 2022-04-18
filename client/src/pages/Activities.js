@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllActs } from "../actions/activities";
 
 function Activities() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const activityList = useSelector((state) => state.activities);
   const loading = useSelector((state) => state.loader);
@@ -45,13 +44,10 @@ function Activities() {
                 cateTitle={cate}
                 cateList={activityList.filter((act) => act.category === cate)}
                 titleColor={cate === "Most popular" && "orange"}
-                setIsModalOpen={setIsModalOpen}
               />
             );
           })
         )}
-
-        <FormCreate isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </Container>
     </div>
   );

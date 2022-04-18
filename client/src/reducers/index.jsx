@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import records from "./records";
-import activities, { loader } from "./activities";
+import activities, { loader, form } from "./activities";
 
 const reducers = combineReducers({
   records,

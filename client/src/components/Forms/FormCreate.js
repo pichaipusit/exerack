@@ -2,23 +2,43 @@ import { Box, Grid, Modal } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import FileBase from "react-file-base64";
 import "./formCreate.css";
-import running from "../../images/outdoor/running.jpeg";
 import ClearIcon from "@mui/icons-material/Clear";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch } from "react-redux";
+import { createRecord } from "../../actions/records";
 
-function FormCreate({ isModalOpen, setIsModalOpen }) {
+function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
   const [recordInput, setRecordInput] = useState({
-    imgFile: "",
-    activityName: "",
+    imgFile: activity.imgFile,
+    activityName: activity.title,
     date: new Date(),
     duration: "",
     note: "",
-    goal: "",
+    goal: 0,
   });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setRecordInput({
+      ...recordInput,
+      activityName: activity.title,
+      imgFile: activity.imgFile,
+    });
+  }, [isModalOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(createRecord(recordInput));
+    setRecordInput({
+      imgFile: activity.imgFile,
+      activityName: activity.title,
+      date: new Date(),
+      duration: "",
+      note: "",
+      goal: "",
+    });
   };
 
   const handleDateChange = (e) => {
@@ -124,7 +144,7 @@ function FormCreate({ isModalOpen, setIsModalOpen }) {
                 alignItems: "center",
               }}
             >
-              <img width="100px" src={running} alt="" />
+              <img width="100px" src={recordInput.imgFile} alt="" />
               <FileBase
                 type="file"
                 multiple={false}

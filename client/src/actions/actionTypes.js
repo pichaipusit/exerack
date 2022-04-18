@@ -5,3 +5,4 @@ export const UPDATE = "UPDATE";
 export const DELETE = "DELETE";
 
 export const LOAD = "LOAD";
+export const ADD_ACT_NAME = "ADD_ACT_NAME";

@@ -1,6 +1,5 @@
 import * as api from "../api/index";
 import * as actions from "../actions/actionTypes";
-import { useSelector } from "react-redux";
 
 export const getAllActs = () => async (dispatch) => {
   dispatch({ type: actions.LOAD, payload: true });

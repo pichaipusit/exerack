@@ -5,18 +5,31 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LastRecord from "../components/LastRecord";
 import running from "../images/outdoor/running.jpeg";
 import "./home.css";
 import HistoryList from "../components/HistoryList";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllRecords } from "../actions/records";
 
 function Home() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
-
   const [isHistoryView, setIsHistoryView] = useState(false);
 
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loader);
+  const records = useSelector((state) => state.records);
+  const [lastRecords, setLastRecords] = useState(records.slice(0, 2));
+
+  useEffect(() => {
+    dispatch(getAllRecords());
+  }, []);
+
+  const handleClick = () => {
+    console.log(lastRecords);
+  };
   return (
     <div>
       <Container maxWidth="md">
@@ -36,13 +49,15 @@ function Home() {
 
         <section className="last-record">
           {/* Will use map */}
+
           <LastRecord matches={matches} />
           <LastRecord matches={matches} />
         </section>
 
         <div className="history-btn-container">
           <button
-            onClick={() => setIsHistoryView(!isHistoryView)}
+            // onClick={() => setIsHistoryView(!isHistoryView)}
+            onClick={handleClick}
             className="history-btn btn"
           >
             View history
