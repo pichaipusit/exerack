@@ -40,3 +40,18 @@ export const createRecord = async (req, res) => {
     res.status(409).json(error.message);
   }
 };
+
+export const updateRecord = async (req, res) => {
+  const { id } = req.params;
+  // const { imgFile, activity, date, duration, goal, note, cal } = req.body;
+  const record = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No record with id: ${id}`);
+
+  const updatedRecord = { ...record, _id: id };
+  await RecordInfo.findByIdAndUpdate(_id, updatedRecord, { new: true });
+  res.json(updatedRecord);
+};
+
+// export const deleteRecord = async (req, res) => {}
