@@ -35,7 +35,7 @@
   height: 56px;
   padding-left: 30px;
   margin-bottom: 20px;
-  border-top: 1px solid rgb(132, 131, 131);
+  border-top: 1px solid rgb(78, 78, 78);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   font-size: 20px;
@@ -54,7 +54,7 @@
 }
 
 /* Duration */
-.label-duration {
+.label-margin {
   margin-right: 100px;
   color: grey;
 }

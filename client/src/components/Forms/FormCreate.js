@@ -5,35 +5,46 @@ import "./formCreate.css";
 import ClearIcon from "@mui/icons-material/Clear";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useDispatch } from "react-redux";
-import { createRecord } from "../../actions/records";
+import { useDispatch, useSelector } from "react-redux";
+import { createRecord, updateRecord } from "../../actions/records";
 import moment from "moment";
 
-function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
+function FormCreate({
+  isModalOpen,
+  setIsModalOpen,
+  activity,
+  titleStatus,
+  titleButton,
+}) {
   const [recordInput, setRecordInput] = useState({
     imgFile: activity.imgFile,
-    activity: activity.title,
-    date: new Date(),
+    activity: activity.activity,
+    date: "",
     duration: "",
     goal: "",
     note: "",
     cal: activity.cal,
   });
+
+  // Styling form
   const [modalCenter, setModalCenter] = useState({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   });
-
   const [isFormOpen, setIsFormOpen] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setRecordInput({
       ...recordInput,
-      activity: activity.title,
+      activity: activity.activity,
       imgFile: activity.imgFile,
       cal: activity.cal,
+      date: moment(activity.date).toDate(),
+      duration: activity.duration,
+      goal: activity.goal ? activity.goal : 0,
+      note: activity.note,
     });
 
     // Smooth form showing
@@ -46,15 +57,22 @@ function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
     };
   }, [isModalOpen]);
 
+  const currentID = useSelector((state) => state.currentID);
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createRecord(recordInput));
+
+    if (currentID === 0) {
+      dispatch(createRecord(recordInput));
+    } else {
+      console.log("✅");
+      dispatch(updateRecord(currentID, recordInput));
+    }
     setRecordInput({
       imgFile: "",
       activity: "",
-      date: new Date(),
+      date: "",
       duration: "",
-      goal: "",
+      goal: 0,
       note: "",
       cal: 0,
     });
@@ -73,7 +91,7 @@ function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
           onSubmit={handleSubmit}
         >
           <div className="action-header">
-            <h3>Create New Activity</h3>
+            <h3>{titleStatus} </h3>
             <ClearIcon
               onClick={() => setIsModalOpen(false)}
               sx={{
@@ -101,7 +119,7 @@ function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
                 />
 
                 <div>
-                  <label htmlFor="duration" className="label-duration">
+                  <label htmlFor="duration" className="label-margin">
                     Duration h : m
                   </label>
                   <input
@@ -119,24 +137,17 @@ function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
 
                 <DatePicker
                   selected={recordInput.date}
-                  dateFormat="yyyy/MM/dd"
+                  dateFormat="dd/MM/yyyy"
                   onChange={(date) =>
                     setRecordInput({ ...recordInput, date: date })
                   }
                 />
               </div>
 
-              {/* <input
-                className="date"
-                type="date"
-                placeholder="Calories goal"
-                value={recordInput.date}
-                onChange={(e) =>
-                  setRecordInput({ ...recordInput, date: e.target.value })
-                }
-              /> */}
-
               <div className="form-group">
+                <label htmlFor="goal" className="label-margin">
+                  Calories Goal
+                </label>
                 <input
                   className="goal"
                   type="number"
@@ -190,7 +201,7 @@ function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
               Cancel
             </button>
             <button type="submit" className="btn-goon btn">
-              Create
+              {titleButton}
             </button>
           </div>
         </form>

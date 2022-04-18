@@ -1,10 +1,10 @@
-import { Box, Grid, Popper } from "@mui/material";
+import { Box, Grid, Popper, useMediaQuery, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import "./history.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import moment from "moment";
 
-function History({ matches, rec }) {
+function History({ rec }) {
   const { date, note, activity, duration, goal, cal } = rec;
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -19,6 +19,9 @@ function History({ matches, rec }) {
     color: "rgb(193, 191, 191)",
   });
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
@@ -31,20 +34,26 @@ function History({ matches, rec }) {
   return (
     <div className="history">
       <Grid container>
-        <Grid item xs={4} textAlign="center" sx={matches && flexSpace}>
+        <Grid item xs={4} textAlign="center" sx={{ ...(matches && flexSpace) }}>
           <p className="date">{moment(date).format("DD/MM/YYYY")} </p>
           <p className="date">Note:{note} </p>
         </Grid>
 
-        <Grid item xs={3.5} textAlign="center" sx={matches && flexSpace}>
+        <Grid
+          item
+          xs={3.5}
+          textAlign="center"
+          sx={{ ...(matches && flexSpace) }}
+        >
           <p>{activity} </p>
           <p>{duration} min</p>
         </Grid>
 
-        <Grid item xs={4} textAlign="center" sx={matches && flexSpace}>
+        <Grid item xs={4} textAlign="center" sx={{ ...(matches && flexSpace) }}>
           <p>Goal: {goal} kcal</p>
           <p className="burn-cal">Burn {cal} cal</p>
         </Grid>
+
         <Grid item xs={0.5} textAlign="left">
           <MoreHorizIcon
             aria-describedby={id}

@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import running from "../images/outdoor/running.jpeg";
 import "./lastRecord.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -8,12 +8,33 @@ import "react-circular-progressbar/dist/styles.css";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import { updateRecord } from "../actions/records";
+import FormCreate from "./Forms/FormCreate";
+import * as actions from "../actions/actionTypes";
 
 function LastRecord({ matches, lasRec }) {
-  const { imgFile, activity, date, duration, goal, note, cal } = lasRec;
-
+  const {
+    _id,
+    imgFile,
+    activity: title,
+    date,
+    duration,
+    goal,
+    note,
+    cal,
+  } = lasRec;
   // const percentage = (900 / 1000) * 100;
   const percentage = (cal / goal) * 100;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleEdit = (id) => {
+    setIsModalOpen(true);
+    dispatch({ type: actions.SET_ID, payload: id });
+  };
+  const handleRemove = (id) => {};
 
   return (
     <div style={{ margin: "30px 0" }}>
@@ -45,7 +66,7 @@ function LastRecord({ matches, lasRec }) {
             style={{ backgroundImage: `url(${imgFile})` }}
           >
             <div className="card-info">
-              <p>{activity} </p>
+              <p>{title} </p>
               <div className="card-footer">
                 <p>{duration} </p> <p className="min">min</p>
               </div>
@@ -59,7 +80,7 @@ function LastRecord({ matches, lasRec }) {
 
         {/* Calories circle bar */}
         <Grid item xs={12} sm={2}>
-          <div className="goal">{goal && `Goal ${goal} kcal`}</div>
+          <div className="goal-cal">{goal && `Goal ${goal} kcal`}</div>
           <div className="circle">
             <CircularProgressbar
               value={percentage}
@@ -90,11 +111,25 @@ function LastRecord({ matches, lasRec }) {
 
         <Grid item xs={2}>
           <div className="change-icons">
-            <BorderColorIcon sx={{ marginRight: "14px", cursor: "pointer" }} />
-            <DeleteOutlineIcon sx={{ cursor: "pointer" }} />
+            <BorderColorIcon
+              onClick={() => handleEdit(_id)}
+              sx={{ marginRight: "14px", cursor: "pointer" }}
+            />
+            <DeleteOutlineIcon
+              onClick={() => handleRemove(_id)}
+              sx={{ cursor: "pointer" }}
+            />
           </div>
         </Grid>
       </Grid>
+
+      <FormCreate
+        activity={lasRec}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        titleStatus="Editing..."
+        titleButton="Save"
+      />
       <hr />
     </div>
   );

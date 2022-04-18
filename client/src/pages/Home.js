@@ -77,7 +77,7 @@ function Home() {
           </button>
         </div>
         <section className="history-sect">
-          {isHistoryView && <HistoryList matches={matches} />}
+          {isHistoryView && <HistoryList />}
         </section>
       </Container>
     </div>

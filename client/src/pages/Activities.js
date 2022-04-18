@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { CircularProgress, Container, Grid, Typography } from "@mui/material";
 import ActivityCategory from "../components/ActivityCategory";
 import "./Activities.css";
-import FormCreate from "../components/Forms/FormCreate";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllActs } from "../actions/activities";
 

@@ -6,11 +6,15 @@ import FormCreate from "./Forms/FormCreate";
 
 function ActivityCategory({ cateTitle, cateList, titleColor = "normal" }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activity, setActivity] = useState({ title: "", imgFile: "", cal: "" });
+  const [activity, setActivity] = useState({
+    activity: "",
+    imgFile: "",
+    cal: "",
+  });
 
   const handleClick = (title, imgFile, cal) => {
     setIsModalOpen(true);
-    setActivity({ title: title, imgFile: imgFile, cal: cal });
+    setActivity({ activity: title, imgFile: imgFile, cal: cal });
   };
 
   return (
@@ -44,6 +48,8 @@ function ActivityCategory({ cateTitle, cateList, titleColor = "normal" }) {
         activity={activity}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        titleStatus="Create New Activity"
+        titleButton="Create"
       />
     </div>
   );

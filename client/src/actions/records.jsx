@@ -22,3 +22,15 @@ export const createRecord = (newRec) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const updateRecord = (id, updatedRec) => async (dispatch) => {
+  try {
+    const { data } = await api.updateRecord(id, updatedRec);
+
+    dispatch({ type: actions.UPDATE_REC, payload: data });
+    dispatch({ type: actions.SET_ID, payload: 0 });
+  } catch (error) {
+    console.log("😭");
+    console.log(error.message);
+  }
+};

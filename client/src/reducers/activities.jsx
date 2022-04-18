@@ -19,3 +19,12 @@ export const loader = (loading = false, action) => {
       return loading;
   }
 };
+
+export const currentID = (id = 0, action) => {
+  switch (action.type) {
+    case actions.SET_ID:
+      return action.payload;
+    default:
+      return id;
+  }
+};
