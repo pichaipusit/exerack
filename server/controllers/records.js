@@ -23,6 +23,7 @@ export const getAllRecords = async (req, res) => {
 export const createRecord = async (req, res) => {
   const { imgFile, activity, date, duration, goal, note } = req.body;
   const newRecord = new RecordInfo({
+    imgFile,
     activity,
     date,
     duration,
