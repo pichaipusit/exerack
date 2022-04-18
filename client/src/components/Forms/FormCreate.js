@@ -7,64 +7,80 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from "react-redux";
 import { createRecord } from "../../actions/records";
+import moment from "moment";
 
 function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
   const [recordInput, setRecordInput] = useState({
     imgFile: activity.imgFile,
-    activityName: activity.title,
+    activity: activity.title,
     date: new Date(),
     duration: "",
+    goal: "",
     note: "",
-    goal: 0,
+    cal: activity.cal,
+  });
+  const [modalCenter, setModalCenter] = useState({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   });
 
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setRecordInput({
       ...recordInput,
-      activityName: activity.title,
+      activity: activity.title,
       imgFile: activity.imgFile,
+      cal: activity.cal,
     });
+
+    // Smooth form showing
+    const timeout = setTimeout(() => {
+      setIsFormOpen(true);
+    }, 100);
+    return () => {
+      setIsFormOpen(false);
+      clearTimeout(timeout);
+    };
   }, [isModalOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createRecord(recordInput));
     setRecordInput({
-      imgFile: activity.imgFile,
-      activityName: activity.title,
+      imgFile: "",
+      activity: "",
       date: new Date(),
       duration: "",
-      note: "",
       goal: "",
+      note: "",
+      cal: 0,
     });
-  };
-
-  const handleDateChange = (e) => {
-    // e.preventDefault();
-    setRecordInput({ ...recordInput, date: e.target.value });
   };
 
   return (
     <>
       <Modal
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        sx={modalCenter}
         open={isModalOpen}
-        // onClose={handleClose}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <form className="form-create" onSubmit={handleSubmit}>
+        <form
+          className={`form-create form-close ${isFormOpen && "form-open"}`}
+          onSubmit={handleSubmit}
+        >
           <div className="action-header">
             <h3>Create New Activity</h3>
             <ClearIcon
               onClick={() => setIsModalOpen(false)}
-              sx={{ marginRight: "10px", cursor: "pointer" }}
+              sx={{
+                marginRight: "10px",
+                cursor: "pointer",
+                "&:hover": { color: "white" },
+              }}
             />
           </div>
 
@@ -75,18 +91,18 @@ function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
                   className="act_name"
                   type="text"
                   placeholder="Activity Name"
-                  value={recordInput.activityName}
+                  value={recordInput.activity}
                   onChange={(e) =>
                     setRecordInput({
                       ...recordInput,
-                      activityName: e.target.value,
+                      activity: e.target.value,
                     })
                   }
                 />
 
                 <div>
                   <label htmlFor="duration" className="label-duration">
-                    Duration:
+                    Duration h : m
                   </label>
                   <input
                     className="time"
@@ -102,7 +118,6 @@ function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
                 </div>
 
                 <DatePicker
-                  style={{ color: "white" }}
                   selected={recordInput.date}
                   dateFormat="yyyy/MM/dd"
                   onChange={(date) =>
@@ -110,6 +125,16 @@ function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
                   }
                 />
               </div>
+
+              {/* <input
+                className="date"
+                type="date"
+                placeholder="Calories goal"
+                value={recordInput.date}
+                onChange={(e) =>
+                  setRecordInput({ ...recordInput, date: e.target.value })
+                }
+              /> */}
 
               <div className="form-group">
                 <input
@@ -152,6 +177,7 @@ function FormCreate({ isModalOpen, setIsModalOpen, activity }) {
                   setRecordInput({ ...recordInput, imgFile: base64 })
                 }
               />
+              ≈ {recordInput.cal} kcal
             </Grid>
           </Grid>
 

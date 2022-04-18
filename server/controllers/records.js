@@ -2,9 +2,9 @@ import RecordInfo from "../models/record.model.js";
 
 export const getAllRecords = async (req, res) => {
   try {
-    const allActivities = await RecordInfo.find();
+    const allRecords = await RecordInfo.find();
 
-    res.status(200).json(allActivities);
+    res.status(200).json(allRecords);
   } catch (error) {
     res.status(404).json(error);
   }
@@ -21,7 +21,7 @@ export const getAllRecords = async (req, res) => {
 // };
 
 export const createRecord = async (req, res) => {
-  const { imgFile, activity, date, duration, goal, note } = req.body;
+  const { imgFile, activity, date, duration, goal, note, cal } = req.body;
   const newRecord = new RecordInfo({
     imgFile,
     activity,
@@ -29,6 +29,7 @@ export const createRecord = async (req, res) => {
     duration,
     goal,
     note,
+    cal,
   });
 
   try {
@@ -36,6 +37,6 @@ export const createRecord = async (req, res) => {
 
     res.status(201).json(newRecord);
   } catch (error) {
-    res.status(409).json(error);
+    res.status(409).json(error.message);
   }
 };

@@ -1,5 +1,6 @@
 import {
   Avatar,
+  CircularProgress,
   Container,
   Grid,
   useMediaQuery,
@@ -21,7 +22,7 @@ function Home() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loader);
   const records = useSelector((state) => state.records);
-  const [lastRecords, setLastRecords] = useState(records.slice(0, 2));
+  const [lastRecords, setLastRecords] = useState(records.slice(-2));
 
   useEffect(() => {
     dispatch(getAllRecords());
@@ -47,17 +48,29 @@ function Home() {
           </Grid>
         </Grid>
 
-        <section className="last-record">
-          {/* Will use map */}
-
-          <LastRecord matches={matches} />
-          <LastRecord matches={matches} />
-        </section>
+        {loading ? (
+          <div className="circular">
+            <CircularProgress color="inherit" />
+          </div>
+        ) : (
+          <section className="last-record">
+            {/* Will use map */}
+            {lastRecords.map((lasRec) => {
+              return (
+                <LastRecord
+                  key={lasRec._id}
+                  matches={matches}
+                  lasRec={lasRec}
+                />
+              );
+            })}
+          </section>
+        )}
 
         <div className="history-btn-container">
           <button
-            // onClick={() => setIsHistoryView(!isHistoryView)}
-            onClick={handleClick}
+            onClick={() => setIsHistoryView(!isHistoryView)}
+            // onClick={handleClick}
             className="history-btn btn"
           >
             View history

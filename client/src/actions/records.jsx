@@ -6,7 +6,7 @@ export const getAllRecords = () => async (dispatch) => {
 
   try {
     const { data } = await api.getAllRecords();
-    dispatch({ type: actions.GET_ALL, payload: data });
+    dispatch({ type: actions.GET_ALL_RECS, payload: data });
 
     dispatch({ type: actions.LOAD, payload: false });
   } catch (error) {
@@ -17,9 +17,8 @@ export const getAllRecords = () => async (dispatch) => {
 export const createRecord = (newRec) => async (dispatch) => {
   try {
     const { data } = await api.createRecord(newRec);
-
-    dispatch({ type: actions.CREATE, payload: data });
+    dispatch({ type: actions.CREATE_REC, payload: data });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };

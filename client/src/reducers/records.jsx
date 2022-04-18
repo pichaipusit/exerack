@@ -1,12 +1,14 @@
-import { ActionTypes } from "@mui/base";
 import * as actions from "../actions/actionTypes";
 
 export default (records = [], action) => {
   switch (action.type) {
-    case actions.GET_ALL:
+    case actions.GET_ALL_RECS:
       return action.payload;
-    case actions.CREATE:
+      break;
+    case actions.CREATE_REC:
       return [...records, action.payload];
+      break;
+
     // case actions.GET:
     //   return records.find(rec => rec._id === action.payload);
     // case actions.UPDATE:

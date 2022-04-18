@@ -2,9 +2,12 @@ import { Box, Grid, Popper } from "@mui/material";
 import React, { useState } from "react";
 import "./history.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import moment from "moment";
 
-function History({ matches }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+function History({ matches, rec }) {
+  const { date, note, activity, duration, goal, cal } = rec;
+
+  const [anchorEl, setAnchorEl] = useState(null);
   const [flexSpace, setFlexSpace] = useState({
     display: "flex",
     justifyContent: "space-evenly",
@@ -29,18 +32,18 @@ function History({ matches }) {
     <div className="history">
       <Grid container>
         <Grid item xs={4} textAlign="center" sx={matches && flexSpace}>
-          <p className="date">10/05/2022</p>
-          <p className="date">Note</p>
+          <p className="date">{moment(date).format("DD/MM/YYYY")} </p>
+          <p className="date">Note:{note} </p>
         </Grid>
 
         <Grid item xs={3.5} textAlign="center" sx={matches && flexSpace}>
-          <p>Running</p>
-          <p>1:45 min</p>
+          <p>{activity} </p>
+          <p>{duration} min</p>
         </Grid>
 
         <Grid item xs={4} textAlign="center" sx={matches && flexSpace}>
-          <p>Goal: 500 cal</p>
-          <p className="burn-cal">Burn 240 cal</p>
+          <p>Goal: {goal} kcal</p>
+          <p className="burn-cal">Burn {cal} cal</p>
         </Grid>
         <Grid item xs={0.5} textAlign="left">
           <MoreHorizIcon

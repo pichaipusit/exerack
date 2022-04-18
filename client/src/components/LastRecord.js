@@ -7,19 +7,24 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import moment from "moment";
 
-function LastRecord({ matches }) {
-  const percentage = (900 / 1000) * 100;
-  // const percentage2 = (cal / goal) * 100;
+function LastRecord({ matches, lasRec }) {
+  const { imgFile, activity, date, duration, goal, note, cal } = lasRec;
+
+  // const percentage = (900 / 1000) * 100;
+  const percentage = (cal / goal) * 100;
 
   return (
     <div style={{ margin: "30px 0" }}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={2}>
           <div className={`date-note ${!matches && "date-note-mobile"}`}>
-            <p style={{ marginRight: `20px` }}>10/25/2022</p>
+            <p style={{ marginRight: `20px` }}>
+              {moment(date).format("DD/MM/YYYY")}
+            </p>
             <p>
-              Note <br />
+              Note: <br /> {note}
             </p>
           </div>
         </Grid>
@@ -34,11 +39,15 @@ function LastRecord({ matches }) {
             justifyContent: "center",
           }}
         >
-          <article className="card">
+          {/* Card */}
+          <article
+            className="card"
+            style={{ backgroundImage: `url(${imgFile})` }}
+          >
             <div className="card-info">
-              <p>Boxing</p>
+              <p>{activity} </p>
               <div className="card-footer">
-                <p>1:45</p> <p className="min">min</p>
+                <p>{duration} </p> <p className="min">min</p>
               </div>
             </div>
           </article>
@@ -48,11 +57,13 @@ function LastRecord({ matches }) {
           </div>
         </Grid>
 
+        {/* Calories circle bar */}
         <Grid item xs={12} sm={2}>
+          <div className="goal">{goal && `Goal ${goal} kcal`}</div>
           <div className="circle">
             <CircularProgressbar
               value={percentage}
-              text={`250 cal`}
+              text={`${cal} kcal`}
               styles={{
                 path: {
                   // Path color

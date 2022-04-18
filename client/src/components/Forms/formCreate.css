@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Play&family=Quintessential&display=swap");
+:root {
+  --dark-input: rgb(30, 30, 30);
+}
 
 .form-create {
   width: 400px;
@@ -15,10 +18,20 @@
   box-shadow: 5px 5px 20px black;
 }
 
+.form-close {
+  transform: scale(0.7);
+  opacity: 0;
+}
+.form-open {
+  transform: scale(1);
+  transition: 0.3s;
+  opacity: 1;
+}
+
+/* Header */
 .action-header {
   color: rgb(176, 173, 173);
   background: rgb(13, 13, 13);
-  /* padding: 0; */
   height: 56px;
   padding-left: 30px;
   margin-bottom: 20px;
@@ -40,15 +53,18 @@
   text-align: center;
 }
 
+/* Duration */
 .label-duration {
-  margin-right: 120px;
+  margin-right: 100px;
   color: grey;
 }
+
 input {
   width: 70%;
   padding: 6px;
   margin: 8px;
   outline: none;
+  border: none;
   background: rgb(159, 158, 158);
   border-radius: 5px;
 }
