@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
-import React, { useState } from "react";
-import running from "../images/outdoor/running.jpeg";
+import React, { useEffect, useState } from "react";
 import "./lastRecord.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { CircularProgressbar } from "react-circular-progressbar";
@@ -8,12 +7,14 @@ import "react-circular-progressbar/dist/styles.css";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import moment from "moment";
-import { useDispatch } from "react-redux";
-import { updateRecord } from "../actions/records";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteRecord, updateRecord } from "../actions/records";
 import FormCreate from "./Forms/FormCreate";
 import * as actions from "../actions/actionTypes";
+import StatusFX from "./Forms/StatusFX";
 
 function LastRecord({ matches, lasRec }) {
+  const isStatusFXShow = useSelector((state) => state.isStatusFXShow);
   const {
     _id,
     imgFile,
@@ -24,8 +25,10 @@ function LastRecord({ matches, lasRec }) {
     note,
     cal,
   } = lasRec;
+  const [isDeleted, setIsDeleted] = useState(false);
+
   // const percentage = (900 / 1000) * 100;
-  const percentage = (cal / goal) * 100;
+  const percentage = (cal / (goal === 0 ? cal : goal)) * 100;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -34,10 +37,15 @@ function LastRecord({ matches, lasRec }) {
     setIsModalOpen(true);
     dispatch({ type: actions.SET_ID, payload: id });
   };
-  const handleRemove = (id) => {};
+  const handleRemove = (id) => {
+    // Actually need confirmation first
+    window.location.reload();
+    dispatch(deleteRecord(id));
+    setIsDeleted(true);
+  };
 
   return (
-    <div style={{ margin: "30px 0" }}>
+    <div className={`lasRec-container ${isDeleted && "test"}`}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={2}>
           <div className={`date-note ${!matches && "date-note-mobile"}`}>
@@ -80,7 +88,9 @@ function LastRecord({ matches, lasRec }) {
 
         {/* Calories circle bar */}
         <Grid item xs={12} sm={2}>
-          <div className="goal-cal">{goal && `Goal ${goal} kcal`}</div>
+          <div
+            className={`goal-cal ${goal == 0 && "darker-goal"}`}
+          >{`Goal ${goal} kcal`}</div>
           <div className="circle">
             <CircularProgressbar
               value={percentage}
@@ -96,7 +106,7 @@ function LastRecord({ matches, lasRec }) {
                 text: {
                   // Text color
                   fill: "rgb(255, 106, 0)",
-                  fontSize: `${matches ? "16px" : "6px"}`,
+                  fontSize: `${matches ? "12px" : "4.2px"}`,
                   transform: `translateY(${matches ? "0" : "-30px"})`,
                 },
                 trail: {
@@ -128,9 +138,11 @@ function LastRecord({ matches, lasRec }) {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         titleStatus="Editing..."
-        titleButton="Save"
+        titleButton="Update"
       />
       <hr />
+
+      {isStatusFXShow && <StatusFX status="Updated" />}
     </div>
   );
 }

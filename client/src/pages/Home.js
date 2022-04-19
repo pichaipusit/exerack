@@ -22,15 +22,11 @@ function Home() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loader);
   const records = useSelector((state) => state.records);
-  const [lastRecords, setLastRecords] = useState(records.slice(-2));
 
   useEffect(() => {
     dispatch(getAllRecords());
   }, []);
 
-  const handleClick = () => {
-    console.log(lastRecords);
-  };
   return (
     <div>
       <Container maxWidth="md">
@@ -54,16 +50,18 @@ function Home() {
           </div>
         ) : (
           <section className="last-record">
-            {/* Will use map */}
-            {lastRecords.map((lasRec) => {
-              return (
-                <LastRecord
-                  key={lasRec._id}
-                  matches={matches}
-                  lasRec={lasRec}
-                />
-              );
-            })}
+            {records
+              .slice(-2)
+              .reverse()
+              .map((lasRec) => {
+                return (
+                  <LastRecord
+                    key={lasRec._id}
+                    matches={matches}
+                    lasRec={lasRec}
+                  />
+                );
+              })}
           </section>
         )}
 

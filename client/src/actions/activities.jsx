@@ -17,7 +17,7 @@ export const getAllActs = () => async (dispatch) => {
 export const createActivity = (newAct) => async (dispatch) => {
   try {
     const { data } = await api.createActivity(newAct);
-    // console.log("✅", data);
+
     dispatch({ type: actions.CREATE, payload: data });
   } catch (error) {
     console.log(error);

@@ -10,12 +10,9 @@ export default (records = [], action) => {
       return records.map((rec) =>
         rec._id === action.payload._id ? action.payload : rec
       );
-    // case actions.GET:
-    //   return records.find(rec => rec._id === action.payload);
-    // case actions.UPDATE:
-    //   return action.payload;
-    // case actions.DELETE:
-    //   return action.payload;
+    case actions.DELETE_REC:
+      return records.filter((rec) => rec.id !== action.payload);
+
     default:
       return records;
   }

@@ -1,0 +1,62 @@
+:root {
+  --green-check: rgb(68, 249, 149);
+}
+
+.statusFX-container {
+  position: fixed;
+  z-index: 200;
+  left: 50vw;
+  top: 40vh;
+  color: var(--green-check);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.check-ic-container {
+  border: 2px solid var(--green-check);
+  border-radius: 25px;
+  width: fit-content;
+  height: fit-content;
+}
+
+/* Status tick */
+.no-tick {
+  transform: scale(0.1);
+}
+.tick {
+  transform: scale(1);
+  transition: 0.3s;
+}
+
+/* Status title */
+.no-fadein {
+  margin: 0;
+  text-shadow: 0 0 10px black;
+  transform: translateX(-20px);
+  opacity: 0;
+}
+.fadein {
+  transform: translateX(0px);
+  opacity: 1;
+  transition: 0.4s;
+}
+
+/* End showing FX */
+.check-ic-container,
+.tick,
+.fadein {
+  animation: example 2.5s ease-out;
+}
+@keyframes example {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0;
+  }
+}

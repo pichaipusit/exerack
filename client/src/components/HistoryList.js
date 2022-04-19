@@ -3,15 +3,17 @@ import { useSelector } from "react-redux";
 import History from "../components/History";
 
 function HistoryList() {
-  const records = useSelector((state) => state.records);
-  const [recordList, setRecordList] = useState(records.slice(0, -2));
+  const recordList = useSelector((state) => state.records);
 
   return (
     <div>
       {/* Use map */}
-      {recordList.map((rec) => {
-        return <History key={rec._id} rec={rec} />;
-      })}
+      {recordList
+        .slice(0, -2)
+        .reverse()
+        .map((rec) => {
+          return <History key={rec._id} rec={rec} />;
+        })}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "../pages/Activities.css";
 import { useDispatch, useSelector } from "react-redux";
 import FormCreate from "./Forms/FormCreate";
+import StatusFX from "./Forms/StatusFX";
 
 function ActivityCategory({ cateTitle, cateList, titleColor = "normal" }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,6 +17,10 @@ function ActivityCategory({ cateTitle, cateList, titleColor = "normal" }) {
     setIsModalOpen(true);
     setActivity({ activity: title, imgFile: imgFile, cal: cal });
   };
+
+  const isStatusFXShow = useSelector((state) => state.isStatusFXShow);
+  const loading = useSelector((state) => state.loader);
+  const currentID = useSelector((state) => state.currentID);
 
   return (
     <div className="actList_container">
@@ -51,6 +56,8 @@ function ActivityCategory({ cateTitle, cateList, titleColor = "normal" }) {
         titleStatus="Create New Activity"
         titleButton="Create"
       />
+
+      {isStatusFXShow && <StatusFX status="Success" />}
     </div>
   );
 }

@@ -6,8 +6,13 @@ import ClearIcon from "@mui/icons-material/Clear";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { createRecord, updateRecord } from "../../actions/records";
+import {
+  createRecord,
+  getAllRecords,
+  updateRecord,
+} from "../../actions/records";
 import moment from "moment";
+import * as actions from "../../actions/actionTypes";
 
 function FormCreate({
   isModalOpen,
@@ -17,13 +22,13 @@ function FormCreate({
   titleButton,
 }) {
   const [recordInput, setRecordInput] = useState({
-    imgFile: activity.imgFile,
-    activity: activity.activity,
-    date: "",
-    duration: "",
-    goal: "",
+    imgFile: "",
+    activity: "",
+    date: new Date(),
+    duration: "00:00",
+    goal: 0,
     note: "",
-    cal: activity.cal,
+    cal: "",
   });
 
   // Styling form
@@ -42,9 +47,9 @@ function FormCreate({
       imgFile: activity.imgFile,
       cal: activity.cal,
       date: moment(activity.date).toDate(),
-      duration: activity.duration,
+      duration: activity.duration || "00:00",
       goal: activity.goal ? activity.goal : 0,
-      note: activity.note,
+      note: activity.note || "",
     });
 
     // Smooth form showing
@@ -57,16 +62,18 @@ function FormCreate({
     };
   }, [isModalOpen]);
 
+  // Switch between Create & Update for the form button
   const currentID = useSelector((state) => state.currentID);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (currentID === 0) {
       dispatch(createRecord(recordInput));
     } else {
-      console.log("✅");
       dispatch(updateRecord(currentID, recordInput));
     }
+    setIsModalOpen(false);
     setRecordInput({
       imgFile: "",
       activity: "",

@@ -4,11 +4,13 @@ import ActivityCategory from "../components/ActivityCategory";
 import "./Activities.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllActs } from "../actions/activities";
+import StatusFX from "../components/Forms/StatusFX";
 
 function Activities() {
   const dispatch = useDispatch();
   const activityList = useSelector((state) => state.activities);
   const loading = useSelector((state) => state.loader);
+  const [isStatusFXShow, setIsTest] = useState(false);
 
   const [actCates, setActCates] = useState([
     "Most popular",

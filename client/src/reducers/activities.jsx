@@ -11,6 +11,7 @@ export default (activities = [], action) => {
   }
 };
 
+// Small component that want to store value for others to use
 export const loader = (loading = false, action) => {
   switch (action.type) {
     case actions.LOAD:
@@ -26,5 +27,14 @@ export const currentID = (id = 0, action) => {
       return action.payload;
     default:
       return id;
+  }
+};
+
+export const isStatusFXShow = (fxShow = false, action) => {
+  switch (action.type) {
+    case actions.SHOW_FX:
+      return action.payload;
+    default:
+      return fxShow;
   }
 };
