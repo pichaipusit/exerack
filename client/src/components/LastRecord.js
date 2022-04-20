@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Box, Grid, Popper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./lastRecord.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -12,6 +12,8 @@ import { deleteRecord, updateRecord } from "../actions/records";
 import FormCreate from "./Forms/FormCreate";
 import * as actions from "../actions/actionTypes";
 import StatusFX from "./Forms/StatusFX";
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
 
 function LastRecord({ matches, lasRec }) {
   const isStatusFXShow = useSelector((state) => state.isStatusFXShow);
@@ -38,11 +40,19 @@ function LastRecord({ matches, lasRec }) {
     dispatch({ type: actions.SET_ID, payload: id });
   };
   const handleRemove = (id) => {
-    // Actually need confirmation first
-    window.location.reload();
+    handleClick();
     dispatch(deleteRecord(id));
     setIsDeleted(true);
+    window.location.reload();
   };
+
+  // Ask user for sure to delete a record
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popper" : undefined;
 
   return (
     <div className={`lasRec-container ${isDeleted && "test"}`}>
@@ -125,10 +135,20 @@ function LastRecord({ matches, lasRec }) {
               onClick={() => handleEdit(_id)}
               sx={{ marginRight: "14px", cursor: "pointer" }}
             />
+
             <DeleteOutlineIcon
-              onClick={() => handleRemove(_id)}
+              onClick={handleClick}
               sx={{ cursor: "pointer" }}
             />
+            {/* Ask user for sure to delete */}
+            <Popper id={id} open={open} anchorEl={anchorEl}>
+              <button className="sure-btn" onClick={() => handleRemove(_id)}>
+                <CheckIcon fontSize="small" />
+              </button>
+              <button className="no-btn" onClick={() => setAnchorEl(null)}>
+                <ClearIcon fontSize="small" />
+              </button>
+            </Popper>
           </div>
         </Grid>
       </Grid>

@@ -16,11 +16,10 @@ export const getAllRecords = (fetchRecords) => async (dispatch) => {
 
 export const createRecord = (newRec) => async (dispatch) => {
   try {
-    const { data } = await api.createRecord(newRec);
-    dispatch({ type: actions.CREATE_REC, payload: data });
-
     // Show status FX
     dispatch({ type: actions.SHOW_FX, payload: true });
+    const { data } = await api.createRecord(newRec);
+    dispatch({ type: actions.CREATE_REC, payload: data });
   } catch (error) {
     console.log(error.message);
   }
@@ -28,12 +27,12 @@ export const createRecord = (newRec) => async (dispatch) => {
 
 export const updateRecord = (id, updatedRec) => async (dispatch) => {
   try {
+    dispatch({ type: actions.SHOW_FX, payload: true });
     const { data } = await api.updateRecord(id, updatedRec);
 
     dispatch({ type: actions.UPDATE_REC, payload: data });
     dispatch({ type: actions.SET_ID, payload: 0 });
     // Show status FX
-    dispatch({ type: actions.SHOW_FX, payload: true });
   } catch (error) {
     console.log(error);
   }
