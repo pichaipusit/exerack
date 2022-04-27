@@ -6,6 +6,7 @@ export const getAllActs = () => async (dispatch) => {
 
   try {
     const { data } = await api.getAllActivities();
+
     dispatch({ type: actions.GET_ALL, payload: data });
 
     dispatch({ type: actions.LOAD, payload: false });
