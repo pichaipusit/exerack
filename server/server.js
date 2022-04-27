@@ -19,7 +19,9 @@ const mongoDBUrl = process.env.MONGODB_URL;
 // Route end point
 app.use("/activities", activityRoutes);
 app.use("/records", recordRoutes);
-
+app.get("/", (req, res) => {
+  res.send("Hello to Exerack");
+});
 // Start the server
 const connectDB = async () => {
   await mongoose.connect(mongoDBUrl);
