@@ -1,6 +1,11 @@
 import { combineReducers } from "redux";
 import records from "./records";
-import activities, { loader, currentID, isStatusFXShow } from "./activities";
+import activities, {
+  loader,
+  currentID,
+  isStatusFXShow,
+  profileInfo,
+} from "./activities";
 
 const reducers = combineReducers({
   records,
@@ -8,6 +13,7 @@ const reducers = combineReducers({
   loader,
   currentID,
   isStatusFXShow,
+  profileInfo,
 });
 
 export default reducers;

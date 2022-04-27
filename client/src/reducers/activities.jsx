@@ -38,3 +38,20 @@ export const isStatusFXShow = (fxShow = false, action) => {
       return fxShow;
   }
 };
+export const profileInfo = (
+  info = {
+    name: "Saladpak",
+    weight: 60,
+    height: 175,
+    age: 20,
+    email: "saladpak88@gmail.com",
+  },
+  action
+) => {
+  switch (action.type) {
+    case actions.UPDATE_PROFILE:
+      return action.payload;
+    default:
+      return info;
+  }
+};

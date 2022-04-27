@@ -12,3 +12,5 @@ export const DELETE_REC = "DELETE_REC";
 export const LOAD = "LOAD";
 export const SET_ID = "SET_ID";
 export const SHOW_FX = "SHOW_FX";
+
+export const UPDATE_PROFILE = "UPDATE_PROFILE";

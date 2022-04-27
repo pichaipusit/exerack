@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import LastRecord from "../components/LastRecord";
-import running from "../images/outdoor/running.jpeg";
+import hiking from "../images/outdoor/hiking.jpeg";
 import "./home.css";
 import HistoryList from "../components/HistoryList";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +22,7 @@ function Home() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loader);
   const records = useSelector((state) => state.records);
+  const profileInfo = useSelector((state) => state.profileInfo);
 
   useEffect(() => {
     dispatch(getAllRecords());
@@ -36,8 +37,10 @@ function Home() {
             xs={4}
             sx={{ display: matches && "flex", alignItems: "center" }}
           >
-            <Avatar alt="Remy Sharp" src={running} sx={{ margin: "20px" }} />
-            <p className={`username ${!matches && "mgLeft"}`}>Saladpak</p>
+            <Avatar alt="Remy Sharp" src={hiking} sx={{ margin: "20px" }} />
+            <p className={`username ${!matches && "mgLeft"}`}>
+              {profileInfo.name}
+            </p>
           </Grid>
           <Grid item xs={5}>
             <h2 className="home-title">Your Progress</h2>
