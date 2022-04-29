@@ -1,5 +1,5 @@
 # exerack MERN
-https://darling-khapse-35c7d3.netlify.app/
+https://exerack-babe.netlify.app/
 
 this is my MERN exercise-tracker project from Generation software developer bootcamp
 
